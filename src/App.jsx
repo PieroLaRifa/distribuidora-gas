@@ -5,6 +5,7 @@ import AdminLayout from "./layouts/AdminLayout.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import PagePlaceholder from "./components/PagePlaceholder.jsx";
 import Home from "./pages/Home.jsx";
+import Products from "./pages/Products.jsx";
 
 // NOTA: en las próximas fases cada <PagePlaceholder /> se reemplaza por su página real.
 export default function App() {
@@ -14,7 +15,7 @@ export default function App() {
       <Route element={<PublicLayout />}>
         <Route index element={<Home />} />
         <Route path="categorias" element={<PagePlaceholder title="Categorías" />} />
-        <Route path="productos" element={<PagePlaceholder title="Productos" />} />
+        <Route path="productos" element={<Products />} />
         <Route path="productos/:id" element={<PagePlaceholder title="Detalle de producto" />} />
         <Route path="carrito" element={<PagePlaceholder title="Carrito" />} />
         <Route path="checkout" element={<PagePlaceholder title="Checkout" />} />
