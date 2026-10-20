@@ -14,6 +14,8 @@ import Categories from "./pages/Categories.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import AdminProducts from "./pages/admin/AdminProducts.jsx";
+import AdminProductForm from "./pages/admin/AdminProductForm.jsx";
 
 // NOTA: en las próximas fases cada <PagePlaceholder /> se reemplaza por su página real.
 export default function App() {
@@ -47,9 +49,9 @@ export default function App() {
         }
       >
         <Route index element={<AdminDashboard />} />
-        <Route path="productos" element={<PagePlaceholder title="Admin: Productos" />} />
-        <Route path="productos/nuevo" element={<PagePlaceholder title="Admin: Nuevo producto" />} />
-        <Route path="productos/:id/editar" element={<PagePlaceholder title="Admin: Editar producto" />} />
+        <Route path="productos" element={<AdminProducts />} />
+        <Route path="productos/nuevo" element={<AdminProductForm />} />
+        <Route path="productos/:id/editar" element={<AdminProductForm />} />
         <Route path="categorias" element={<PagePlaceholder title="Admin: Categorías" />} />
         <Route path="usuarios" element={<PagePlaceholder title="Admin: Usuarios" />} />
         <Route path="ordenes" element={<PagePlaceholder title="Admin: Órdenes" />} />
