@@ -18,6 +18,7 @@ import AdminProducts from "./pages/admin/AdminProducts.jsx";
 import AdminProductForm from "./pages/admin/AdminProductForm.jsx";
 import AdminCategories from "./pages/admin/AdminCategories.jsx";
 import AdminUsers from "./pages/admin/AdminUsers.jsx";
+import AdminOrders from "./pages/admin/AdminOrders.jsx";
 
 // NOTA: en las próximas fases cada <PagePlaceholder /> se reemplaza por su página real.
 export default function App() {
@@ -56,7 +57,7 @@ export default function App() {
         <Route path="productos/:id/editar" element={<AdminProductForm />} />
         <Route path="categorias" element={<AdminCategories />} />
         <Route path="usuarios" element={<AdminUsers />} />
-        <Route path="ordenes" element={<PagePlaceholder title="Admin: Órdenes" />} />
+        <Route path="ordenes" element={<AdminOrders />} />
       </Route>
     </Routes>
   );
