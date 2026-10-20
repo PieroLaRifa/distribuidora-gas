@@ -10,6 +10,7 @@ import Cart from "./pages/Cart.jsx";
 import ProductDetail from "./pages/ProductDetail.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import PaymentSuccess from "./pages/PaymentSuccess.jsx";
+import Categories from "./pages/Categories.jsx";
 
 // NOTA: en las próximas fases cada <PagePlaceholder /> se reemplaza por su página real.
 export default function App() {
@@ -18,7 +19,7 @@ export default function App() {
       {/* Rutas públicas con Header y Footer */}
       <Route element={<PublicLayout />}>
         <Route index element={<Home />} />
-        <Route path="categorias" element={<PagePlaceholder title="Categorías" />} />
+        <Route path="categorias" element={<Categories />} />
         <Route path="productos" element={<Products />} />
         <Route path="productos/:id" element={<ProductDetail />} />
         <Route path="carrito" element={<Cart />} />

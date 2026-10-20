@@ -1,17 +1,40 @@
 
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { getCategories, getProducts } from "../services/mockDb.js";
 import { useCart } from "../context/CartContext.jsx";
 
 export default function Products() {
   const [busqueda, setBusqueda] = useState("");
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("todas");
+  const [searchParams, setSearchParams] = useSearchParams();
 
+  const categoriaParam = searchParams.get("categoria") || "todas";
   const { addToCart } = useCart();
 
   const categorias = getCategories();
   const productos = getProducts();
+
+  const categoriaValida =
+    categoriaParam === "todas" ||
+    categorias.some((categoria) => categoria.id === Number(categoriaParam));
+
+  const categoriaSeleccionada = categoriaValida
+    ? categoriaParam
+    : "todas";
+
+  const cambiarCategoria = (valor) => {
+    setSearchParams((prev) => {
+      const nuevosParams = new URLSearchParams(prev);
+
+      if (valor === "todas") {
+        nuevosParams.delete("categoria");
+      } else {
+        nuevosParams.set("categoria", valor);
+      }
+
+      return nuevosParams;
+    });
+  };
 
   const productosFiltrados = useMemo(() => {
     const termino = busqueda.trim().toLowerCase();
@@ -36,8 +59,12 @@ export default function Products() {
 
   const limpiarFiltros = () => {
     setBusqueda("");
-    setCategoriaSeleccionada("todas");
+    cambiarCategoria("todas");
   };
+
+  const categoriaActual = categorias.find(
+    (categoria) => categoria.id === Number(categoriaSeleccionada)
+  );
 
   return (
     <section className="container py-5">
@@ -46,6 +73,13 @@ export default function Products() {
         <p className="text-muted">
           Encuentra cilindros de gas y accesorios para tu hogar o negocio.
         </p>
+
+        {categoriaActual && (
+          <p className="mb-0">
+            Categoría seleccionada:{" "}
+            <strong>{categoriaActual.nombre}</strong>
+          </p>
+        )}
       </div>
 
       <div className="card border-0 shadow-sm mb-4">
@@ -73,7 +107,7 @@ export default function Products() {
                 id="filtroCategoria"
                 className="form-select"
                 value={categoriaSeleccionada}
-                onChange={(event) => setCategoriaSeleccionada(event.target.value)}
+                onChange={(event) => cambiarCategoria(event.target.value)}
               >
                 <option value="todas">Todas las categorías</option>
                 {categorias.map((categoria) => (
@@ -109,7 +143,7 @@ export default function Products() {
         <div className="alert alert-info text-center py-4">
           <h2 className="h5">No encontramos productos</h2>
           <p className="mb-3">
-            Prueba con otro nombre o selecciona una categoría diferente.
+            Prueba con otro nombre o selecciona otra categoría.
           </p>
           <button
             type="button"
