@@ -11,6 +11,8 @@ import ProductDetail from "./pages/ProductDetail.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import PaymentSuccess from "./pages/PaymentSuccess.jsx";
 import Categories from "./pages/Categories.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
 
 // NOTA: en las próximas fases cada <PagePlaceholder /> se reemplaza por su página real.
 export default function App() {
@@ -29,8 +31,8 @@ export default function App() {
         <Route path="nosotros" element={<PagePlaceholder title="Nosotros" />} />
         <Route path="contacto" element={<PagePlaceholder title="Contacto" />} />
         <Route path="blog" element={<PagePlaceholder title="Blog" />} />
-        <Route path="login" element={<PagePlaceholder title="Iniciar sesión" />} />
-        <Route path="registro" element={<PagePlaceholder title="Registro" />} />
+        <Route path="login" element={<Login />} />
+        <Route path="registro" element={<Register />} />
         <Route path="*" element={<PagePlaceholder title="404 - Página no encontrada" />} />
       </Route>
 
