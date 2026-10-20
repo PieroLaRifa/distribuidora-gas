@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   createUser,
   deleteUser,
@@ -19,7 +19,7 @@ const emptyForm = {
 export default function AdminUsers() {
   const { user: currentUser } = useAuth();
 
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(() => getUsers());
   const [form, setForm] = useState(emptyForm);
   const [editingId, setEditingId] = useState(null);
   const [search, setSearch] = useState("");
@@ -29,10 +29,6 @@ export default function AdminUsers() {
   function loadUsers() {
     setUsers(getUsers());
   }
-
-  useEffect(() => {
-    loadUsers();
-  }, []);
 
   function resetForm() {
     setForm(emptyForm);

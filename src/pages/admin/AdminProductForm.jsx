@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   createProduct,
@@ -23,31 +23,30 @@ export default function AdminProductForm() {
   const navigate = useNavigate();
   const editando = Boolean(id);
 
-  const [form, setForm] = useState(initialForm);
-  const [error, setError] = useState("");
+  const [form, setForm] = useState(() => {
+  if (!productoInicial) return initialForm;
+
+  return {
+    nombre: productoInicial.nombre ?? "",
+    categoriaId: String(productoInicial.categoriaId ?? ""),
+    precio: String(productoInicial.precio ?? ""),
+    stock: String(productoInicial.stock ?? ""),
+    imagen: productoInicial.imagen ?? "",
+    descripcion: productoInicial.descripcion ?? "",
+    destacado: Boolean(productoInicial.destacado),
+  };
+});
+
+const [error, setError] = useState(
+  productoNoEncontrado
+    ? "No se encontró el producto que deseas editar."
+    : ""
+);
 
   const categorias = getCategories();
 
-  useEffect(() => {
-    if (!editando) return;
-
-    const producto = getProductById(id);
-
-    if (!producto) {
-      setError("No se encontró el producto que deseas editar.");
-      return;
-    }
-
-    setForm({
-      nombre: producto.nombre ?? "",
-      categoriaId: String(producto.categoriaId ?? ""),
-      precio: String(producto.precio ?? ""),
-      stock: String(producto.stock ?? ""),
-      imagen: producto.imagen ?? "",
-      descripcion: producto.descripcion ?? "",
-      destacado: Boolean(producto.destacado),
-    });
-  }, [id, editando]);
+  const productoInicial = editando ? getProductById(id) : null;
+  const productoNoEncontrado = editando && !productoInicial;
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -132,7 +131,7 @@ export default function AdminProductForm() {
         </div>
       )}
 
-      {!(editando && error.includes("No se encontró")) && (
+      {!productoNoEncontrado && (
         <div className="card shadow-sm" style={{ maxWidth: "850px" }}>
           <div className="card-body p-4">
             <form onSubmit={handleSubmit}>

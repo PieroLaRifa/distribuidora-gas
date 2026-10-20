@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   deleteOrder,
   getOrders,
@@ -32,7 +32,7 @@ const formatDate = (date) => {
 };
 
 export default function AdminOrders() {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState(() => getOrders());
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("Todas");
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -43,9 +43,7 @@ export default function AdminOrders() {
     setOrders(getOrders());
   }
 
-  useEffect(() => {
-    loadOrders();
-  }, []);
+
 
   function handleStatusChange(order, newStatus) {
     setError("");
