@@ -8,6 +8,8 @@ import Home from "./pages/Home.jsx";
 import Products from "./pages/Products.jsx";
 import Cart from "./pages/Cart.jsx";
 import ProductDetail from "./pages/ProductDetail.jsx";
+import Checkout from "./pages/Checkout.jsx";
+import PaymentSuccess from "./pages/PaymentSuccess.jsx";
 
 // NOTA: en las próximas fases cada <PagePlaceholder /> se reemplaza por su página real.
 export default function App() {
@@ -20,8 +22,8 @@ export default function App() {
         <Route path="productos" element={<Products />} />
         <Route path="productos/:id" element={<ProductDetail />} />
         <Route path="carrito" element={<Cart />} />
-        <Route path="checkout" element={<PagePlaceholder title="Checkout" />} />
-        <Route path="pago-exitoso" element={<PagePlaceholder title="Pago exitoso" />} />
+        <Route path="checkout" element={<Checkout />} />
+        <Route path="pago-exitoso" element={<PaymentSuccess />} />
         <Route path="pago-rechazado" element={<PagePlaceholder title="Pago rechazado" />} />
         <Route path="nosotros" element={<PagePlaceholder title="Nosotros" />} />
         <Route path="contacto" element={<PagePlaceholder title="Contacto" />} />
