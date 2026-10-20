@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import PagePlaceholder from "./components/PagePlaceholder.jsx";
 import Home from "./pages/Home.jsx";
 import Products from "./pages/Products.jsx";
+import Cart from "./pages/Cart.jsx";
 
 // NOTA: en las próximas fases cada <PagePlaceholder /> se reemplaza por su página real.
 export default function App() {
@@ -17,7 +18,7 @@ export default function App() {
         <Route path="categorias" element={<PagePlaceholder title="Categorías" />} />
         <Route path="productos" element={<Products />} />
         <Route path="productos/:id" element={<PagePlaceholder title="Detalle de producto" />} />
-        <Route path="carrito" element={<PagePlaceholder title="Carrito" />} />
+        <Route path="carrito" element={<Cart />} />
         <Route path="checkout" element={<PagePlaceholder title="Checkout" />} />
         <Route path="pago-exitoso" element={<PagePlaceholder title="Pago exitoso" />} />
         <Route path="pago-rechazado" element={<PagePlaceholder title="Pago rechazado" />} />
