@@ -4,6 +4,7 @@ import PublicLayout from "./layouts/PublicLayout.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import PagePlaceholder from "./components/PagePlaceholder.jsx";
+import Home from "./pages/Home.jsx";
 
 // NOTA: en las próximas fases cada <PagePlaceholder /> se reemplaza por su página real.
 export default function App() {
@@ -11,7 +12,7 @@ export default function App() {
     <Routes>
       {/* Rutas públicas con Header y Footer */}
       <Route element={<PublicLayout />}>
-        <Route index element={<PagePlaceholder title="Home" />} />
+        <Route index element={<Home />} />
         <Route path="categorias" element={<PagePlaceholder title="Categorías" />} />
         <Route path="productos" element={<PagePlaceholder title="Productos" />} />
         <Route path="productos/:id" element={<PagePlaceholder title="Detalle de producto" />} />
