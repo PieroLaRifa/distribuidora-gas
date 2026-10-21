@@ -1,16 +1,62 @@
-# React + Vite
+# Distribuidora de Gas El Volcán
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyecto web hecho con React y Vite para administrar y mostrar productos de una distribuidora de gas.
 
-Currently, two official plugins are available:
+## ¿Qué incluye?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Catálogo de productos.
+- Sección de administración para crear y editar productos.
+- Formularios con validaciones básicas.
+- Datos guardados en el navegador mediante `localStorage`.
+- Pruebas automatizadas con Vitest y React Testing Library.
 
-## React Compiler
+## Cómo ejecutar el proyecto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Necesitas tener instalado Node.js y npm.
 
-## Expanding the ESLint configuration
+1. Descarga o clona el repositorio.
+2. Abre una terminal en la carpeta del proyecto.
+3. Instala las dependencias:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+   ```bash
+   npm install
+   ```
+
+4. Inicia la aplicación:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Abre en el navegador la dirección que aparece en la terminal (normalmente `http://localhost:5173`).
+
+## Comandos útiles
+
+```bash
+npm test
+npm run test:coverage
+npm run lint
+npm run build
+```
+
+- `npm test`: ejecuta las pruebas.
+- `npm run test:coverage`: ejecuta las pruebas y muestra la cobertura.
+- `npm run lint`: revisa el código.
+- `npm run build`: genera la versión de producción.
+
+## Importante
+
+Los datos se guardan en el navegador usando `localStorage`, así que no se comparten automáticamente entre navegadores o computadores. Si se borran los datos del sitio, los cambios guardados localmente pueden perderse.
+
+## Tecnologías
+
+- React
+- Vite
+- React Router
+- Vitest
+- React Testing Library
+- Bootstrap
+
+---
+
+Proyecto semestral DSY1104.
