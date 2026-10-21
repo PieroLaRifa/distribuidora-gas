@@ -23,30 +23,31 @@ export default function AdminProductForm() {
   const navigate = useNavigate();
   const editando = Boolean(id);
 
-  const [form, setForm] = useState(() => {
-  if (!productoInicial) return initialForm;
-
-  return {
-    nombre: productoInicial.nombre ?? "",
-    categoriaId: String(productoInicial.categoriaId ?? ""),
-    precio: String(productoInicial.precio ?? ""),
-    stock: String(productoInicial.stock ?? ""),
-    imagen: productoInicial.imagen ?? "",
-    descripcion: productoInicial.descripcion ?? "",
-    destacado: Boolean(productoInicial.destacado),
-  };
-});
-
-const [error, setError] = useState(
-  productoNoEncontrado
-    ? "No se encontró el producto que deseas editar."
-    : ""
-);
-
-  const categorias = getCategories();
-
+  // Obtener el producto antes de inicializar los estados.
   const productoInicial = editando ? getProductById(id) : null;
   const productoNoEncontrado = editando && !productoInicial;
+
+  const [form, setForm] = useState(() => {
+    if (!productoInicial) return initialForm;
+
+    return {
+      nombre: productoInicial.nombre ?? "",
+      categoriaId: String(productoInicial.categoriaId ?? ""),
+      precio: String(productoInicial.precio ?? ""),
+      stock: String(productoInicial.stock ?? ""),
+      imagen: productoInicial.imagen ?? "",
+      descripcion: productoInicial.descripcion ?? "",
+      destacado: Boolean(productoInicial.destacado),
+    };
+  });
+
+  const [error, setError] = useState(
+    productoNoEncontrado
+      ? "No se encontró el producto que deseas editar."
+      : ""
+  );
+
+  const categorias = getCategories();
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -117,9 +118,11 @@ const [error, setError] = useState(
           <i className="bi bi-arrow-left me-2" aria-hidden="true" />
           Volver a productos
         </Link>
+
         <h1 className="h3 fw-bold mt-3">
           {editando ? "Editar producto" : "Crear producto"}
         </h1>
+
         <p className="text-muted">
           Completa los datos del producto del catálogo.
         </p>
@@ -255,7 +258,11 @@ const [error, setError] = useState(
                 <button type="submit" className="btn btn-warning">
                   {editando ? "Guardar cambios" : "Crear producto"}
                 </button>
-                <Link to="/admin/productos" className="btn btn-outline-secondary">
+
+                <Link
+                  to="/admin/productos"
+                  className="btn btn-outline-secondary"
+                >
                   Cancelar
                 </Link>
               </div>
