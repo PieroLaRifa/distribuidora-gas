@@ -16,7 +16,8 @@ export function AuthProvider({ children }) {
 
   const saveSession = (u) => {
     // No guardamos la contraseña en la sesión
-    const { password, ...safeUser } = u;
+    const safeUser = { ...u };
+    delete safeUser.password;
     setUser(safeUser);
     localStorage.setItem(SESSION_KEY, JSON.stringify(safeUser));
   };
@@ -48,7 +49,7 @@ export function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
-
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) throw new Error("useAuth debe usarse dentro de AuthProvider");

@@ -4,6 +4,21 @@ import PublicLayout from "./layouts/PublicLayout.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import PagePlaceholder from "./components/PagePlaceholder.jsx";
+import Home from "./pages/Home.jsx";
+import Products from "./pages/Products.jsx";
+import Cart from "./pages/Cart.jsx";
+import ProductDetail from "./pages/ProductDetail.jsx";
+import Checkout from "./pages/Checkout.jsx";
+import PaymentSuccess from "./pages/PaymentSuccess.jsx";
+import Categories from "./pages/Categories.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import AdminProducts from "./pages/admin/AdminProducts.jsx";
+import AdminProductForm from "./pages/admin/AdminProductForm.jsx";
+import AdminCategories from "./pages/admin/AdminCategories.jsx";
+import AdminUsers from "./pages/admin/AdminUsers.jsx";
+import AdminOrders from "./pages/admin/AdminOrders.jsx";
 
 // NOTA: en las próximas fases cada <PagePlaceholder /> se reemplaza por su página real.
 export default function App() {
@@ -11,19 +26,19 @@ export default function App() {
     <Routes>
       {/* Rutas públicas con Header y Footer */}
       <Route element={<PublicLayout />}>
-        <Route index element={<PagePlaceholder title="Home" />} />
-        <Route path="categorias" element={<PagePlaceholder title="Categorías" />} />
-        <Route path="productos" element={<PagePlaceholder title="Productos" />} />
-        <Route path="productos/:id" element={<PagePlaceholder title="Detalle de producto" />} />
-        <Route path="carrito" element={<PagePlaceholder title="Carrito" />} />
-        <Route path="checkout" element={<PagePlaceholder title="Checkout" />} />
-        <Route path="pago-exitoso" element={<PagePlaceholder title="Pago exitoso" />} />
+        <Route index element={<Home />} />
+        <Route path="categorias" element={<Categories />} />
+        <Route path="productos" element={<Products />} />
+        <Route path="productos/:id" element={<ProductDetail />} />
+        <Route path="carrito" element={<Cart />} />
+        <Route path="checkout" element={<Checkout />} />
+        <Route path="pago-exitoso" element={<PaymentSuccess />} />
         <Route path="pago-rechazado" element={<PagePlaceholder title="Pago rechazado" />} />
         <Route path="nosotros" element={<PagePlaceholder title="Nosotros" />} />
         <Route path="contacto" element={<PagePlaceholder title="Contacto" />} />
         <Route path="blog" element={<PagePlaceholder title="Blog" />} />
-        <Route path="login" element={<PagePlaceholder title="Iniciar sesión" />} />
-        <Route path="registro" element={<PagePlaceholder title="Registro" />} />
+        <Route path="login" element={<Login />} />
+        <Route path="registro" element={<Register />} />
         <Route path="*" element={<PagePlaceholder title="404 - Página no encontrada" />} />
       </Route>
 
@@ -36,13 +51,13 @@ export default function App() {
           </ProtectedRoute>
         }
       >
-        <Route index element={<PagePlaceholder title="Resumen Admin" />} />
-        <Route path="productos" element={<PagePlaceholder title="Admin: Productos" />} />
-        <Route path="productos/nuevo" element={<PagePlaceholder title="Admin: Nuevo producto" />} />
-        <Route path="productos/:id/editar" element={<PagePlaceholder title="Admin: Editar producto" />} />
-        <Route path="categorias" element={<PagePlaceholder title="Admin: Categorías" />} />
-        <Route path="usuarios" element={<PagePlaceholder title="Admin: Usuarios" />} />
-        <Route path="ordenes" element={<PagePlaceholder title="Admin: Órdenes" />} />
+        <Route index element={<AdminDashboard />} />
+        <Route path="productos" element={<AdminProducts />} />
+        <Route path="productos/nuevo" element={<AdminProductForm />} />
+        <Route path="productos/:id/editar" element={<AdminProductForm />} />
+        <Route path="categorias" element={<AdminCategories />} />
+        <Route path="usuarios" element={<AdminUsers />} />
+        <Route path="ordenes" element={<AdminOrders />} />
       </Route>
     </Routes>
   );
