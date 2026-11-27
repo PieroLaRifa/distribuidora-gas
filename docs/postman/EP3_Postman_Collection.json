@@ -1,0 +1,3158 @@
+{
+  "info": {
+    "_postman_id": "4e27b210-ce74-438d-9e83-54d392c158eb",
+    "name": "API Distribuidora de Gas El Volcán",
+    "description": "API REST de la tienda online: categorías, productos, órdenes y usuarios.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53552321",
+    "_collection_link": "https://go.postman.co/collection/53552321-4e27b210-ce74-438d-9e83-54d392c158eb?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "usuarios",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Buscar usuario por id",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usuarios/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usuarios",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Id del usuario"
+                        }
+                      ]
+                    },
+                    "description": "Devuelve un usuario según su identificador."
+                  },
+                  "response": [
+                    {
+                      "name": "Usuario encontrado",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usuarios/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usuarios",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del usuario"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 7745,\n  \"nombre\": \"string\",\n  \"email\": \"string\",\n  \"telefono\": \"string\",\n  \"rol\": \"string\",\n  \"fechaRegistro\": \"1968-02-16T06:33:31.313Z\"\n}"
+                    },
+                    {
+                      "name": "El usuario no existe. Actualmente el backend responde 500 porque no hay un manejador global de errores; lo esperable es 404.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usuarios/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usuarios",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del usuario"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Actualizar usuario",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"maria.gonzalez@correo.cl\",\n  \"nombre\": \"María González Soto\",\n  \"rol\": \"CLIENTE\",\n  \"telefono\": \"+56987654321\",\n  \"password\": \"demo456\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usuarios/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usuarios",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Id del usuario a actualizar"
+                        }
+                      ]
+                    },
+                    "description": "Reemplaza los datos de un usuario existente. La contraseña es opcional: si se envía, debe tener al menos 6 caracteres."
+                  },
+                  "response": [
+                    {
+                      "name": "Usuario actualizado",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"maria.gonzalez@correo.cl\",\n  \"nombre\": \"María González Soto\",\n  \"rol\": \"CLIENTE\",\n  \"telefono\": \"+56987654321\",\n  \"password\": \"demo456\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usuarios/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usuarios",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del usuario a actualizar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 7745,\n  \"nombre\": \"string\",\n  \"email\": \"string\",\n  \"telefono\": \"string\",\n  \"rol\": \"string\",\n  \"fechaRegistro\": \"1968-02-16T06:33:31.313Z\"\n}"
+                    },
+                    {
+                      "name": "Datos inválidos",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"maria.gonzalez@correo.cl\",\n  \"nombre\": \"María González Soto\",\n  \"rol\": \"CLIENTE\",\n  \"telefono\": \"+56987654321\",\n  \"password\": \"demo456\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usuarios/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usuarios",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del usuario a actualizar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    },
+                    {
+                      "name": "El usuario no existe (esperable: 404)",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"maria.gonzalez@correo.cl\",\n  \"nombre\": \"María González Soto\",\n  \"rol\": \"CLIENTE\",\n  \"telefono\": \"+56987654321\",\n  \"password\": \"demo456\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usuarios/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usuarios",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del usuario a actualizar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Eliminar usuario",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usuarios/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usuarios",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Id del usuario a eliminar"
+                        }
+                      ]
+                    },
+                    "description": "Elimina un usuario por su id. No devuelve cuerpo."
+                  },
+                  "response": [
+                    {
+                      "name": "Usuario eliminado",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usuarios/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usuarios",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del usuario a eliminar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    },
+                    {
+                      "name": "El usuario no existe o no se puede eliminar",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usuarios/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usuarios",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del usuario a eliminar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "registro",
+              "item": [
+                {
+                  "name": "Registrar cliente",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"juan.perez@correo.cl\",\n  \"nombre\": \"Juan Pérez\",\n  \"password\": \"demo123\",\n  \"telefono\": \"+56912345678\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usuarios/registro",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usuarios",
+                        "registro"
+                      ]
+                    },
+                    "description": "Registro público de un usuario nuevo. El rol se asigna en el servidor, no se envía en la petición. La contraseña debe tener al menos 6 caracteres."
+                  },
+                  "response": [
+                    {
+                      "name": "Usuario registrado (la respuesta nunca incluye la contraseña)",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"juan.perez@correo.cl\",\n  \"nombre\": \"Juan Pérez\",\n  \"password\": \"demo123\",\n  \"telefono\": \"+56912345678\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usuarios/registro",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usuarios",
+                            "registro"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 7745,\n  \"nombre\": \"string\",\n  \"email\": \"string\",\n  \"telefono\": \"string\",\n  \"rol\": \"string\",\n  \"fechaRegistro\": \"1968-02-16T06:33:31.313Z\"\n}"
+                    },
+                    {
+                      "name": "Datos inválidos (nombre vacío, correo mal formado, contraseña corta, etc.)",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"juan.perez@correo.cl\",\n  \"nombre\": \"Juan Pérez\",\n  \"password\": \"demo123\",\n  \"telefono\": \"+56912345678\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usuarios/registro",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usuarios",
+                            "registro"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    },
+                    {
+                      "name": "El correo ya está registrado. Actualmente el backend responde 500 porque no hay un manejador global de errores; lo esperable es 409.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"juan.perez@correo.cl\",\n  \"nombre\": \"Juan Pérez\",\n  \"password\": \"demo123\",\n  \"telefono\": \"+56912345678\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usuarios/registro",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usuarios",
+                            "registro"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Listar usuarios",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/usuarios",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "usuarios"
+                  ]
+                },
+                "description": "Devuelve todos los usuarios. Pensado para el rol ADMIN (la restricción se aplicará cuando se integre JWT)."
+              },
+              "response": [
+                {
+                  "name": "Lista de usuarios (sin contraseñas)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usuarios",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usuarios"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "[\n  {\n    \"id\": 8500,\n    \"nombre\": \"string\",\n    \"email\": \"string\",\n    \"telefono\": \"string\",\n    \"rol\": \"string\",\n    \"fechaRegistro\": \"1961-03-02T12:06:54.214Z\"\n  },\n  {\n    \"id\": 9645,\n    \"nombre\": \"string\",\n    \"email\": \"string\",\n    \"telefono\": \"string\",\n    \"rol\": \"string\",\n    \"fechaRegistro\": \"1956-09-03T04:13:35.914Z\"\n  }\n]"
+                }
+              ]
+            },
+            {
+              "name": "Crear usuario (administrador)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"maria.gonzalez@correo.cl\",\n  \"nombre\": \"María González\",\n  \"password\": \"demo123\",\n  \"rol\": \"ADMIN\",\n  \"telefono\": \"+56987654321\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/usuarios",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "usuarios"
+                  ]
+                },
+                "description": "Crea un usuario indicando su rol (ADMIN o CLIENTE). Pensado para el rol ADMIN (la restricción se aplicará cuando se integre JWT)."
+              },
+              "response": [
+                {
+                  "name": "Usuario creado",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"maria.gonzalez@correo.cl\",\n  \"nombre\": \"María González\",\n  \"password\": \"demo123\",\n  \"rol\": \"ADMIN\",\n  \"telefono\": \"+56987654321\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usuarios",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usuarios"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 7745,\n  \"nombre\": \"string\",\n  \"email\": \"string\",\n  \"telefono\": \"string\",\n  \"rol\": \"string\",\n  \"fechaRegistro\": \"1968-02-16T06:33:31.313Z\"\n}"
+                },
+                {
+                  "name": "Datos inválidos (por ejemplo, rol ausente o contraseña corta)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"maria.gonzalez@correo.cl\",\n  \"nombre\": \"María González\",\n  \"password\": \"demo123\",\n  \"rol\": \"ADMIN\",\n  \"telefono\": \"+56987654321\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usuarios",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usuarios"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                },
+                {
+                  "name": "El correo ya está registrado (esperable: 409)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"maria.gonzalez@correo.cl\",\n  \"nombre\": \"María González\",\n  \"password\": \"demo123\",\n  \"rol\": \"ADMIN\",\n  \"telefono\": \"+56987654321\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usuarios",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usuarios"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "productos",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Buscar producto por id",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/productos/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "productos",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Id del producto"
+                        }
+                      ]
+                    },
+                    "description": "Devuelve un producto según su identificador."
+                  },
+                  "response": [
+                    {
+                      "name": "Producto encontrado",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/productos/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "productos",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del producto"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 842,\n  \"nombre\": \"string\",\n  \"descripcion\": \"string\",\n  \"precio\": 6870.721612541062,\n  \"stock\": 9165,\n  \"imagen\": \"string\",\n  \"destacado\": true,\n  \"categoriaId\": 331\n}"
+                    },
+                    {
+                      "name": "El producto no existe. Actualmente el backend responde 500 porque no hay un manejador global de errores; lo esperable es 404.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/productos/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "productos",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del producto"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Actualizar producto",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"categoriaId\": 1,\n  \"destacado\": true,\n  \"nombre\": \"Cilindro de gas 15 kg\",\n  \"precio\": 24990,\n  \"stock\": 50,\n  \"descripcion\": \"Cilindro de gas licuado de 15 kg\",\n  \"imagen\": \"/img/cilindro-15kg.png\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/productos/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "productos",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Id del producto a actualizar"
+                        }
+                      ]
+                    },
+                    "description": "Reemplaza todos los datos de un producto existente."
+                  },
+                  "response": [
+                    {
+                      "name": "Producto actualizado",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"categoriaId\": 1,\n  \"destacado\": true,\n  \"nombre\": \"Cilindro de gas 15 kg\",\n  \"precio\": 24990,\n  \"stock\": 50,\n  \"descripcion\": \"Cilindro de gas licuado de 15 kg\",\n  \"imagen\": \"/img/cilindro-15kg.png\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/productos/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "productos",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del producto a actualizar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 842,\n  \"nombre\": \"string\",\n  \"descripcion\": \"string\",\n  \"precio\": 6870.721612541062,\n  \"stock\": 9165,\n  \"imagen\": \"string\",\n  \"destacado\": true,\n  \"categoriaId\": 331\n}"
+                    },
+                    {
+                      "name": "Datos inválidos",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"categoriaId\": 1,\n  \"destacado\": true,\n  \"nombre\": \"Cilindro de gas 15 kg\",\n  \"precio\": 24990,\n  \"stock\": 50,\n  \"descripcion\": \"Cilindro de gas licuado de 15 kg\",\n  \"imagen\": \"/img/cilindro-15kg.png\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/productos/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "productos",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del producto a actualizar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    },
+                    {
+                      "name": "El producto o la categoría no existe (esperable: 404)",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"categoriaId\": 1,\n  \"destacado\": true,\n  \"nombre\": \"Cilindro de gas 15 kg\",\n  \"precio\": 24990,\n  \"stock\": 50,\n  \"descripcion\": \"Cilindro de gas licuado de 15 kg\",\n  \"imagen\": \"/img/cilindro-15kg.png\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/productos/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "productos",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del producto a actualizar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Eliminar producto",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/productos/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "productos",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Id del producto a eliminar"
+                        }
+                      ]
+                    },
+                    "description": "Elimina un producto por su id. No devuelve cuerpo."
+                  },
+                  "response": [
+                    {
+                      "name": "Producto eliminado",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/productos/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "productos",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del producto a eliminar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    },
+                    {
+                      "name": "El producto no existe o no se puede eliminar",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/productos/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "productos",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id del producto a eliminar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Listar productos",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/productos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "productos"
+                  ]
+                },
+                "description": "Devuelve todos los productos del catálogo."
+              },
+              "response": [
+                {
+                  "name": "Lista de productos (puede venir vacía)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/productos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "productos"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "[\n  {\n    \"id\": 6951,\n    \"nombre\": \"string\",\n    \"descripcion\": \"string\",\n    \"precio\": 8463.339972540041,\n    \"stock\": 5972,\n    \"imagen\": \"string\",\n    \"destacado\": false,\n    \"categoriaId\": 2829\n  },\n  {\n    \"id\": 522,\n    \"nombre\": \"string\",\n    \"descripcion\": \"string\",\n    \"precio\": 6802.946163824,\n    \"stock\": 4274,\n    \"imagen\": \"string\",\n    \"destacado\": true,\n    \"categoriaId\": 913\n  }\n]"
+                }
+              ]
+            },
+            {
+              "name": "Crear producto",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoriaId\": 1,\n  \"destacado\": true,\n  \"nombre\": \"Cilindro de gas 15 kg\",\n  \"precio\": 24990,\n  \"stock\": 50,\n  \"descripcion\": \"Cilindro de gas licuado de 15 kg\",\n  \"imagen\": \"/img/cilindro-15kg.png\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/productos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "productos"
+                  ]
+                },
+                "description": "Registra un producto nuevo. Requiere una categoría existente (categoriaId). Precio mayor que cero y stock mayor o igual a cero."
+              },
+              "response": [
+                {
+                  "name": "Producto creado",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"categoriaId\": 1,\n  \"destacado\": true,\n  \"nombre\": \"Cilindro de gas 15 kg\",\n  \"precio\": 24990,\n  \"stock\": 50,\n  \"descripcion\": \"Cilindro de gas licuado de 15 kg\",\n  \"imagen\": \"/img/cilindro-15kg.png\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/productos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "productos"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 842,\n  \"nombre\": \"string\",\n  \"descripcion\": \"string\",\n  \"precio\": 6870.721612541062,\n  \"stock\": 9165,\n  \"imagen\": \"string\",\n  \"destacado\": true,\n  \"categoriaId\": 331\n}"
+                },
+                {
+                  "name": "Datos inválidos (nombre vacío, precio <= 0, stock negativo, etc.)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"categoriaId\": 1,\n  \"destacado\": true,\n  \"nombre\": \"Cilindro de gas 15 kg\",\n  \"precio\": 24990,\n  \"stock\": 50,\n  \"descripcion\": \"Cilindro de gas licuado de 15 kg\",\n  \"imagen\": \"/img/cilindro-15kg.png\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/productos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "productos"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                },
+                {
+                  "name": "La categoría indicada no existe (esperable: 404)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"categoriaId\": 1,\n  \"destacado\": true,\n  \"nombre\": \"Cilindro de gas 15 kg\",\n  \"precio\": 24990,\n  \"stock\": 50,\n  \"descripcion\": \"Cilindro de gas licuado de 15 kg\",\n  \"imagen\": \"/img/cilindro-15kg.png\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/productos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "productos"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "categorias",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Buscar categoría por id",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categorias/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categorias",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Id de la categoría"
+                        }
+                      ]
+                    },
+                    "description": "Devuelve una categoría según su identificador."
+                  },
+                  "response": [
+                    {
+                      "name": "Categoría encontrada",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/categorias/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "categorias",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id de la categoría"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 848,\n  \"nombre\": \"string\",\n  \"descripcion\": \"string\"\n}"
+                    },
+                    {
+                      "name": "La categoría no existe. Actualmente el backend responde 500 porque no hay un manejador global de errores; lo esperable es 404.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/categorias/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "categorias",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id de la categoría"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Actualizar categoría",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nombre\": \"Gas licuado\",\n  \"descripcion\": \"Cilindros de gas licuado de petróleo\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categorias/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categorias",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Id de la categoría a actualizar"
+                        }
+                      ]
+                    },
+                    "description": "Reemplaza el nombre y la descripción de una categoría existente."
+                  },
+                  "response": [
+                    {
+                      "name": "Categoría actualizada",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"nombre\": \"Gas licuado\",\n  \"descripcion\": \"Cilindros de gas licuado de petróleo\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/categorias/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "categorias",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id de la categoría a actualizar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 848,\n  \"nombre\": \"string\",\n  \"descripcion\": \"string\"\n}"
+                    },
+                    {
+                      "name": "Datos inválidos",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"nombre\": \"Gas licuado\",\n  \"descripcion\": \"Cilindros de gas licuado de petróleo\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/categorias/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "categorias",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id de la categoría a actualizar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    },
+                    {
+                      "name": "La categoría no existe (esperable: 404, ver nota en GET por id)",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"nombre\": \"Gas licuado\",\n  \"descripcion\": \"Cilindros de gas licuado de petróleo\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/categorias/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "categorias",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id de la categoría a actualizar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Eliminar categoría",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categorias/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categorias",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Id de la categoría a eliminar"
+                        }
+                      ]
+                    },
+                    "description": "Elimina una categoría por su id. No devuelve cuerpo."
+                  },
+                  "response": [
+                    {
+                      "name": "Categoría eliminada",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/categorias/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "categorias",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id de la categoría a eliminar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    },
+                    {
+                      "name": "La categoría no existe o no se puede eliminar",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/categorias/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "categorias",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id de la categoría a eliminar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Listar categorías",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/categorias",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "categorias"
+                  ]
+                },
+                "description": "Devuelve todas las categorías registradas."
+              },
+              "response": [
+                {
+                  "name": "Lista de categorías (puede venir vacía)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categorias",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categorias"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "[\n  {\n    \"id\": 1301,\n    \"nombre\": \"string\",\n    \"descripcion\": \"string\"\n  },\n  {\n    \"id\": 3715,\n    \"nombre\": \"string\",\n    \"descripcion\": \"string\"\n  }\n]"
+                }
+              ]
+            },
+            {
+              "name": "Crear categoría",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nombre\": \"Gas licuado\",\n  \"descripcion\": \"Cilindros de gas licuado de petróleo\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/categorias",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "categorias"
+                  ]
+                },
+                "description": "Registra una categoría nueva. El nombre es obligatorio (máx. 100 caracteres)."
+              },
+              "response": [
+                {
+                  "name": "Categoría creada",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nombre\": \"Gas licuado\",\n  \"descripcion\": \"Cilindros de gas licuado de petróleo\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categorias",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categorias"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 848,\n  \"nombre\": \"string\",\n  \"descripcion\": \"string\"\n}"
+                },
+                {
+                  "name": "Datos inválidos (por ejemplo, nombre vacío)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nombre\": \"Gas licuado\",\n  \"descripcion\": \"Cilindros de gas licuado de petróleo\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categorias",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categorias"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ordenes",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "estado",
+                  "item": [
+                    {
+                      "name": "Actualizar estado de una orden",
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"estado\": \"string\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/ordenes/:id/estado",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "ordenes",
+                            ":id",
+                            "estado"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id de la orden"
+                            }
+                          ]
+                        },
+                        "description": "Cambia solo el estado de la orden (PATCH: actualización parcial). Pensado para el rol ADMIN (la restricción se aplicará cuando se integre JWT)."
+                      },
+                      "response": [
+                        {
+                          "name": "Estado actualizado",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"estado\": \"string\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/ordenes/:id/estado",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "ordenes",
+                                ":id",
+                                "estado"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "1",
+                                  "description": "Id de la orden"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"id\": 1932,\n  \"numeroOrden\": \"string\",\n  \"cliente\": {\n    \"nombre\": \"string\",\n    \"email\": \"string\",\n    \"telefono\": \"string\"\n  },\n  \"direccion\": {\n    \"calle\": \"string\",\n    \"depto\": \"string\",\n    \"comuna\": \"string\",\n    \"indicaciones\": \"string\"\n  },\n  \"items\": [\n    {\n      \"productId\": 7877,\n      \"nombre\": \"string\",\n      \"precioUnitario\": 9467.005813797481,\n      \"cantidad\": 7183,\n      \"subtotal\": 841.6917916350785\n    },\n    {\n      \"productId\": 1010,\n      \"nombre\": \"string\",\n      \"precioUnitario\": 1627.8905168144374,\n      \"cantidad\": 9910,\n      \"subtotal\": 7322.7455891336\n    }\n  ],\n  \"total\": 8114.073099702203,\n  \"estado\": \"string\",\n  \"fecha\": \"1991-03-09T03:30:40.860Z\"\n}"
+                        },
+                        {
+                          "name": "El estado viene vacío",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"estado\": \"string\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/ordenes/:id/estado",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "ordenes",
+                                ":id",
+                                "estado"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "1",
+                                  "description": "Id de la orden"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": null
+                        },
+                        {
+                          "name": "La orden no existe (esperable: 404)",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"estado\": \"string\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/ordenes/:id/estado",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "ordenes",
+                                ":id",
+                                "estado"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "1",
+                                  "description": "Id de la orden"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": null
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Buscar orden por id",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ordenes/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ordenes",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Id de la orden"
+                        }
+                      ]
+                    },
+                    "description": "Devuelve una orden según su identificador interno."
+                  },
+                  "response": [
+                    {
+                      "name": "Orden encontrada",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/ordenes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "ordenes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id de la orden"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 1932,\n  \"numeroOrden\": \"string\",\n  \"cliente\": {\n    \"nombre\": \"string\",\n    \"email\": \"string\",\n    \"telefono\": \"string\"\n  },\n  \"direccion\": {\n    \"calle\": \"string\",\n    \"depto\": \"string\",\n    \"comuna\": \"string\",\n    \"indicaciones\": \"string\"\n  },\n  \"items\": [\n    {\n      \"productId\": 7877,\n      \"nombre\": \"string\",\n      \"precioUnitario\": 9467.005813797481,\n      \"cantidad\": 7183,\n      \"subtotal\": 841.6917916350785\n    },\n    {\n      \"productId\": 1010,\n      \"nombre\": \"string\",\n      \"precioUnitario\": 1627.8905168144374,\n      \"cantidad\": 9910,\n      \"subtotal\": 7322.7455891336\n    }\n  ],\n  \"total\": 8114.073099702203,\n  \"estado\": \"string\",\n  \"fecha\": \"1991-03-09T03:30:40.860Z\"\n}"
+                    },
+                    {
+                      "name": "La orden no existe. Actualmente el backend responde 500 porque no hay un manejador global de errores; lo esperable es 404.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/ordenes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "ordenes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id de la orden"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Eliminar orden",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ordenes/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ordenes",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Id de la orden a eliminar"
+                        }
+                      ]
+                    },
+                    "description": "Elimina una orden por su id. No devuelve cuerpo."
+                  },
+                  "response": [
+                    {
+                      "name": "Orden eliminada",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/ordenes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "ordenes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id de la orden a eliminar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    },
+                    {
+                      "name": "La orden no existe o no se puede eliminar",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/ordenes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "ordenes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1",
+                              "description": "Id de la orden a eliminar"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "numero",
+              "item": [
+                {
+                  "name": "{numeroOrden}",
+                  "item": [
+                    {
+                      "name": "Buscar orden por número de orden",
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/ordenes/numero/:numeroOrden",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "ordenes",
+                            "numero",
+                            ":numeroOrden"
+                          ],
+                          "variable": [
+                            {
+                              "key": "numeroOrden",
+                              "value": "string",
+                              "description": "Número de orden devuelto al crear la orden"
+                            }
+                          ]
+                        },
+                        "description": "Devuelve una orden según el número de orden que se le entregó al cliente (campo numeroOrden de la respuesta)."
+                      },
+                      "response": [
+                        {
+                          "name": "Orden encontrada",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/ordenes/numero/:numeroOrden",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "ordenes",
+                                "numero",
+                                ":numeroOrden"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "numeroOrden",
+                                  "value": "string",
+                                  "description": "Número de orden devuelto al crear la orden"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"id\": 1932,\n  \"numeroOrden\": \"string\",\n  \"cliente\": {\n    \"nombre\": \"string\",\n    \"email\": \"string\",\n    \"telefono\": \"string\"\n  },\n  \"direccion\": {\n    \"calle\": \"string\",\n    \"depto\": \"string\",\n    \"comuna\": \"string\",\n    \"indicaciones\": \"string\"\n  },\n  \"items\": [\n    {\n      \"productId\": 7877,\n      \"nombre\": \"string\",\n      \"precioUnitario\": 9467.005813797481,\n      \"cantidad\": 7183,\n      \"subtotal\": 841.6917916350785\n    },\n    {\n      \"productId\": 1010,\n      \"nombre\": \"string\",\n      \"precioUnitario\": 1627.8905168144374,\n      \"cantidad\": 9910,\n      \"subtotal\": 7322.7455891336\n    }\n  ],\n  \"total\": 8114.073099702203,\n  \"estado\": \"string\",\n  \"fecha\": \"1991-03-09T03:30:40.860Z\"\n}"
+                        },
+                        {
+                          "name": "No existe una orden con ese número (esperable: 404)",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/ordenes/numero/:numeroOrden",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "ordenes",
+                                "numero",
+                                ":numeroOrden"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "numeroOrden",
+                                  "value": "string",
+                                  "description": "Número de orden devuelto al crear la orden"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": null
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Listar órdenes",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordenes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordenes"
+                  ]
+                },
+                "description": "Devuelve todas las órdenes registradas."
+              },
+              "response": [
+                {
+                  "name": "Lista de órdenes (puede venir vacía)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ordenes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ordenes"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "[\n  {\n    \"id\": 7458,\n    \"numeroOrden\": \"string\",\n    \"cliente\": {\n      \"nombre\": \"string\",\n      \"email\": \"string\",\n      \"telefono\": \"string\"\n    },\n    \"direccion\": {\n      \"calle\": \"string\",\n      \"depto\": \"string\",\n      \"comuna\": \"string\",\n      \"indicaciones\": \"string\"\n    },\n    \"items\": [\n      {\n        \"productId\": 355,\n        \"nombre\": \"string\",\n        \"precioUnitario\": 6085.218842946032,\n        \"cantidad\": 4177,\n        \"subtotal\": 5251.578421499094\n      },\n      {\n        \"productId\": 4576,\n        \"nombre\": \"string\",\n        \"precioUnitario\": 6514.395698366367,\n        \"cantidad\": 4434,\n        \"subtotal\": 711.156111566903\n      }\n    ],\n    \"total\": 8156.241764753948,\n    \"estado\": \"string\",\n    \"fecha\": \"1990-11-23T11:55:39.367Z\"\n  },\n  {\n    \"id\": 9333,\n    \"numeroOrden\": \"string\",\n    \"cliente\": {\n      \"nombre\": \"string\",\n      \"email\": \"string\",\n      \"telefono\": \"string\"\n    },\n    \"direccion\": {\n      \"calle\": \"string\",\n      \"depto\": \"string\",\n      \"comuna\": \"string\",\n      \"indicaciones\": \"string\"\n    },\n    \"items\": [\n      {\n        \"productId\": 5315,\n        \"nombre\": \"string\",\n        \"precioUnitario\": 6579.139128746827,\n        \"cantidad\": 8938,\n        \"subtotal\": 9683.995639888439\n      },\n      {\n        \"productId\": 1789,\n        \"nombre\": \"string\",\n        \"precioUnitario\": 8613.47402558416,\n        \"cantidad\": 5414,\n        \"subtotal\": 3901.7486775857114\n      }\n    ],\n    \"total\": 4402.6239217890325,\n    \"estado\": \"string\",\n    \"fecha\": \"2004-03-05T05:45:14.886Z\"\n  }\n]"
+                }
+              ]
+            },
+            {
+              "name": "Crear orden",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cliente\": {\n    \"email\": \"juan.perez@correo.cl\",\n    \"nombre\": \"Juan Pérez\",\n    \"telefono\": \"+56912345678\"\n  },\n  \"direccion\": {\n    \"calle\": \"Av. Providencia 1234\",\n    \"comuna\": \"Providencia\",\n    \"depto\": \"Depto 56\",\n    \"indicaciones\": \"Llamar al llegar\"\n  },\n  \"items\": [\n    {\n      \"cantidad\": 2,\n      \"productId\": 1\n    }\n  ],\n  \"userId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordenes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordenes"
+                  ]
+                },
+                "description": "Registra una orden nueva con los datos del cliente, la dirección de entrega y uno o más productos con su cantidad. userId es opcional (compra sin cuenta). Los productos y el usuario indicados deben existir."
+              },
+              "response": [
+                {
+                  "name": "Orden creada",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"cliente\": {\n    \"email\": \"juan.perez@correo.cl\",\n    \"nombre\": \"Juan Pérez\",\n    \"telefono\": \"+56912345678\"\n  },\n  \"direccion\": {\n    \"calle\": \"Av. Providencia 1234\",\n    \"comuna\": \"Providencia\",\n    \"depto\": \"Depto 56\",\n    \"indicaciones\": \"Llamar al llegar\"\n  },\n  \"items\": [\n    {\n      \"cantidad\": 2,\n      \"productId\": 1\n    }\n  ],\n  \"userId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ordenes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ordenes"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1932,\n  \"numeroOrden\": \"string\",\n  \"cliente\": {\n    \"nombre\": \"string\",\n    \"email\": \"string\",\n    \"telefono\": \"string\"\n  },\n  \"direccion\": {\n    \"calle\": \"string\",\n    \"depto\": \"string\",\n    \"comuna\": \"string\",\n    \"indicaciones\": \"string\"\n  },\n  \"items\": [\n    {\n      \"productId\": 7877,\n      \"nombre\": \"string\",\n      \"precioUnitario\": 9467.005813797481,\n      \"cantidad\": 7183,\n      \"subtotal\": 841.6917916350785\n    },\n    {\n      \"productId\": 1010,\n      \"nombre\": \"string\",\n      \"precioUnitario\": 1627.8905168144374,\n      \"cantidad\": 9910,\n      \"subtotal\": 7322.7455891336\n    }\n  ],\n  \"total\": 8114.073099702203,\n  \"estado\": \"string\",\n  \"fecha\": \"1991-03-09T03:30:40.860Z\"\n}"
+                },
+                {
+                  "name": "Datos inválidos (cliente o dirección incompletos, lista de productos vacía, cantidad menor o igual a cero, etc.)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"cliente\": {\n    \"email\": \"juan.perez@correo.cl\",\n    \"nombre\": \"Juan Pérez\",\n    \"telefono\": \"+56912345678\"\n  },\n  \"direccion\": {\n    \"calle\": \"Av. Providencia 1234\",\n    \"comuna\": \"Providencia\",\n    \"depto\": \"Depto 56\",\n    \"indicaciones\": \"Llamar al llegar\"\n  },\n  \"items\": [\n    {\n      \"cantidad\": 2,\n      \"productId\": 1\n    }\n  ],\n  \"userId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ordenes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ordenes"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                },
+                {
+                  "name": "El usuario o algún producto indicado no existe (esperable: 404)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"cliente\": {\n    \"email\": \"juan.perez@correo.cl\",\n    \"nombre\": \"Juan Pérez\",\n    \"telefono\": \"+56912345678\"\n  },\n  \"direccion\": {\n    \"calle\": \"Av. Providencia 1234\",\n    \"comuna\": \"Providencia\",\n    \"depto\": \"Depto 56\",\n    \"indicaciones\": \"Llamar al llegar\"\n  },\n  \"items\": [\n    {\n      \"cantidad\": 2,\n      \"productId\": 1\n    }\n  ],\n  \"userId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ordenes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ordenes"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "salud",
+          "item": [
+            {
+              "name": "Verificar estado del sistema",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Responde 200 OK\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Backend y base de datos operativos\", function () {\r",
+                      "    const json = pm.response.json();\r",
+                      "    pm.expect(json.estado).to.eql(\"OK\");\r",
+                      "    pm.expect(json.baseDeDatos).to.eql(\"Conectada\");\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/salud",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "salud"
+                  ]
+                },
+                "description": "Ejecuta una consulta simple (SELECT 1) contra MySQL para confirmar que el backend responde y que la base de datos está conectada."
+              },
+              "response": [
+                {
+                  "name": "Backend y base de datos operativos",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/salud",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "salud"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"estado\": \"OK\",\n  \"backend\": \"Funcionando\",\n  \"baseDeDatos\": \"Conectada\"\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Flujo CRUD Categorias",
+      "item": [
+        {
+          "name": "1. Crear categoría",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Responde 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Devuelve id numérico y el nombre enviado\", function () {\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json.id).to.be.a(\"number\");\r",
+                  "    pm.expect(json.nombre).to.include(\"Categoría Postman\");\r",
+                  "});\r",
+                  "\r",
+                  "// Guarda el id para usarlo en las siguientes peticiones\r",
+                  "pm.collectionVariables.set(\"categoriaId\", pm.response.json().id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Categoría Postman {{$timestamp}}\",\r\n  \"descripcion\": \"Creada desde Postman\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "categorias"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2. Buscar categoría por id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Responde 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Devuelve la categoría creada en el paso 1\", function () {\r",
+                  "    const json = pm.response.json();\r",
+                  "    const idGuardado = Number(pm.collectionVariables.get(\"categoriaId\"));\r",
+                  "    pm.expect(json.id).to.eql(idGuardado);\r",
+                  "    pm.expect(json).to.have.property(\"nombre\");\r",
+                  "    pm.expect(json).to.have.property(\"descripcion\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias/{{categoriaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "categorias",
+                "{{categoriaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3. Listar categorías",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Responde 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Devuelve una lista\", function () {\r",
+                  "    pm.expect(pm.response.json()).to.be.an(\"array\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"La lista incluye la categoría creada en el paso 1\", function () {\r",
+                  "    const idGuardado = Number(pm.collectionVariables.get(\"categoriaId\"));\r",
+                  "    const ids = pm.response.json().map(c => c.id);\r",
+                  "    pm.expect(ids).to.include(idGuardado);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "categorias"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. Actualizar categoría",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Responde 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"El nombre quedó actualizado\", function () {\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json.nombre).to.eql(\"Categoría Postman ACTUALIZADA\");\r",
+                  "    pm.expect(json.id).to.eql(Number(pm.collectionVariables.get(\"categoriaId\")));\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Categoría Postman ACTUALIZADA\",\r\n  \"descripcion\": \"Descripción modificada desde Postman\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias/{{categoriaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "categorias",
+                "{{categoriaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5. Crear categoría con nombre vacío (400)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Responde 400 Bad Request\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"\",\r\n  \"descripcion\": \"Debe ser rechazada\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "categorias"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "6. Eliminar categoría",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Responde 204 No Content\", function () {\r",
+                  "    pm.response.to.have.status(204);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"La respuesta no trae cuerpo\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.eql(\"\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias/{{categoriaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "categorias",
+                "{{categoriaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "7. Buscar categoría eliminada (no existe)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Hoy el backend responde 500 (no hay GlobalExceptionHandler).\r",
+                  "// Lo correcto es 404. Cuando se agregue el manejador, dejar solo 404.\r",
+                  "pm.test(\"Una categoría inexistente devuelve error (404 esperado, 500 actual)\", function () {\r",
+                  "    pm.expect([404, 500]).to.include(pm.response.code);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Estado actual del backend\", function () {\r",
+                  "    console.log(\"Código recibido: \" + pm.response.code);\r",
+                  "    pm.expect(pm.response.code).to.not.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias/{{categoriaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "categorias",
+                "{{categoriaId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8090"
+    },
+    {
+      "key": "categoriaId",
+      "value": ""
+    }
+  ]
+}
