@@ -1,24 +1,28 @@
-
 package cl.elvolcan.backend.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public record UsuarioRegistroDTO(
+    @Schema(description = "Nombre completo", example = "Juan Pérez")
     @NotBlank(message = "El nombre es obligatorio")
     @Size(max = 100)
     String nombre,
 
+    @Schema(description = "Correo electrónico", example = "juan.perez@correo.cl")
     @NotBlank(message = "El correo es obligatorio")
     @Email(message = "El correo no es válido")
     @Size(max = 150)
     String email,
 
+    @Schema(description = "Teléfono de contacto", example = "+56912345678")
     @NotBlank(message = "El teléfono es obligatorio")
     @Size(max = 30)
     String telefono,
 
+    @Schema(description = "Contraseña (mínimo 6 caracteres). Valor de demostración, no real.", example = "demo123")
     @NotBlank(message = "La contraseña es obligatoria")
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
     String password
