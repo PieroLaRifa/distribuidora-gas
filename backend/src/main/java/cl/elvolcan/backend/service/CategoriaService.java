@@ -1,9 +1,12 @@
 package cl.elvolcan.backend.service;
 
 import cl.elvolcan.backend.entity.Categoria;
+import cl.elvolcan.backend.exception.ConflictoNegocioException;
+import cl.elvolcan.backend.exception.RecursoNoEncontradoException;
 import cl.elvolcan.backend.repository.CategoriaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
@@ -24,7 +27,7 @@ public class CategoriaService {
     @Transactional(readOnly = true)
     public Categoria buscarPorId(Long id) {
         return categoriaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
+            .orElseThrow(() -> new RecursoNoEncontradoException("Categoría no encontrada"));
     }
 
     public Categoria crear(Categoria categoria) {
@@ -42,7 +45,9 @@ public class CategoriaService {
         Categoria categoria = buscarPorId(id);
 
         if (!categoria.getProductos().isEmpty()) {
-            throw new RuntimeException("No se puede eliminar una categoría que tiene productos asociados");
+            throw new ConflictoNegocioException(
+                "No se puede eliminar una categoría que tiene productos asociados"
+            );
         }
 
         categoriaRepository.delete(categoria);

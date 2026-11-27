@@ -3,10 +3,15 @@ package cl.elvolcan.backend.service;
 
 import cl.elvolcan.backend.entity.Usuario;
 import cl.elvolcan.backend.enums.Rol;
+import cl.elvolcan.backend.exception.ConflictoNegocioException;
+import cl.elvolcan.backend.exception.RecursoNoEncontradoException;
+import cl.elvolcan.backend.repository.OrdenRepository;
 import cl.elvolcan.backend.repository.UsuarioRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Locale;
@@ -16,23 +21,28 @@ import java.util.Locale;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+    private final OrdenRepository ordenRepository;
     private final PasswordEncoder passwordEncoder;
 
     public UsuarioService(
         UsuarioRepository usuarioRepository,
+        OrdenRepository ordenRepository,
         PasswordEncoder passwordEncoder
     ) {
         this.usuarioRepository = usuarioRepository;
+        this.ordenRepository = ordenRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     public Usuario registrar(Usuario usuario) {
-        validarUsuario(usuario);
+        validarUsuario(usuario, true);
 
         String email = normalizarEmail(usuario.getEmail());
 
         if (usuarioRepository.existsByEmail(email)) {
-            throw new RuntimeException("El correo electrónico ya está registrado");
+            throw new ConflictoNegocioException(
+                "El correo electrónico ya está registrado"
+            );
         }
 
         usuario.setEmail(email);
@@ -43,12 +53,21 @@ public class UsuarioService {
     }
 
     public Usuario crearAdministrativo(Usuario usuario) {
-        validarUsuario(usuario);
+        validarUsuario(usuario, true);
+
+        if (usuario.getRol() == null) {
+            throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "El rol es obligatorio"
+            );
+        }
 
         String email = normalizarEmail(usuario.getEmail());
 
         if (usuarioRepository.existsByEmail(email)) {
-            throw new RuntimeException("El correo electrónico ya está registrado");
+            throw new ConflictoNegocioException(
+                "El correo electrónico ya está registrado"
+            );
         }
 
         usuario.setEmail(email);
@@ -58,14 +77,25 @@ public class UsuarioService {
     }
 
     public Usuario actualizar(Long id, Usuario datos) {
+        validarUsuario(datos, false);
+
         Usuario usuario = buscarPorId(id);
         String email = normalizarEmail(datos.getEmail());
 
         usuarioRepository.findByEmail(email).ifPresent(existente -> {
             if (!existente.getId().equals(id)) {
-                throw new RuntimeException("El correo electrónico ya está registrado");
+                throw new ConflictoNegocioException(
+                    "El correo electrónico ya está registrado"
+                );
             }
         });
+
+        if (datos.getRol() == null) {
+            throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "El rol es obligatorio"
+            );
+        }
 
         usuario.setNombre(datos.getNombre());
         usuario.setEmail(email);
@@ -80,19 +110,31 @@ public class UsuarioService {
     }
 
     public void eliminar(Long id) {
-        usuarioRepository.delete(buscarPorId(id));
+        Usuario usuario = buscarPorId(id);
+
+        if (ordenRepository.existsByUsuario_Id(id)) {
+            throw new ConflictoNegocioException(
+                "No se puede eliminar un usuario que tiene órdenes asociadas"
+            );
+        }
+
+        usuarioRepository.delete(usuario);
     }
 
     @Transactional(readOnly = true)
     public Usuario buscarPorId(Long id) {
         return usuarioRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+            .orElseThrow(() -> new RecursoNoEncontradoException(
+                "Usuario no encontrado"
+            ));
     }
 
     @Transactional(readOnly = true)
     public Usuario buscarPorEmail(String email) {
         return usuarioRepository.findByEmail(normalizarEmail(email))
-            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+            .orElseThrow(() -> new RecursoNoEncontradoException(
+                "Usuario no encontrado"
+            ));
     }
 
     @Transactional(readOnly = true)
@@ -104,18 +146,43 @@ public class UsuarioService {
         return email.trim().toLowerCase(Locale.ROOT);
     }
 
-    private void validarUsuario(Usuario usuario) {
+    private void validarUsuario(Usuario usuario, boolean requierePassword) {
         if (usuario.getNombre() == null || usuario.getNombre().isBlank()) {
-            throw new RuntimeException("El nombre es obligatorio");
+            throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "El nombre es obligatorio"
+            );
         }
+
         if (usuario.getEmail() == null || usuario.getEmail().isBlank()) {
-            throw new RuntimeException("El correo electrónico es obligatorio");
+            throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "El correo electrónico es obligatorio"
+            );
         }
-        if (usuario.getPassword() == null || usuario.getPassword().isBlank()) {
-            throw new RuntimeException("La contraseña es obligatoria");
+
+        if (requierePassword &&
+            (usuario.getPassword() == null || usuario.getPassword().isBlank())) {
+            throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "La contraseña es obligatoria"
+            );
         }
+
+        if (usuario.getPassword() != null &&
+            !usuario.getPassword().isBlank() &&
+            usuario.getPassword().length() < 6) {
+            throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "La contraseña debe tener al menos 6 caracteres"
+            );
+        }
+
         if (usuario.getTelefono() == null || usuario.getTelefono().isBlank()) {
-            throw new RuntimeException("El teléfono es obligatorio");
+            throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "El teléfono es obligatorio"
+            );
         }
     }
 }
