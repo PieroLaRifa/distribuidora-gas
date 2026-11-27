@@ -1,10 +1,10 @@
+
 package cl.elvolcan.backend.controller;
 
 import cl.elvolcan.backend.dto.ProductoRequestDTO;
 import cl.elvolcan.backend.dto.ProductoRespuestaDTO;
 import cl.elvolcan.backend.entity.Producto;
 import cl.elvolcan.backend.mapper.ProductoMapper;
-import cl.elvolcan.backend.repository.CategoriaRepository;
 import cl.elvolcan.backend.service.ProductoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -27,20 +27,12 @@ import java.util.List;
 public class ProductoController {
 
     private final ProductoService productoService;
-    private final CategoriaRepository categoriaRepository;
 
-    public ProductoController(
-        ProductoService productoService,
-        CategoriaRepository categoriaRepository
-    ) {
+    public ProductoController(ProductoService productoService) {
         this.productoService = productoService;
-        this.categoriaRepository = categoriaRepository;
     }
 
-    @Operation(
-        summary = "Listar productos",
-        description = "Devuelve todos los productos del catálogo."
-    )
+    @Operation(summary = "Listar productos", description = "Devuelve todos los productos del catálogo.")
     @ApiResponse(
         responseCode = "200",
         description = "Lista de productos (puede venir vacía)",
@@ -58,10 +50,7 @@ public class ProductoController {
         );
     }
 
-    @Operation(
-        summary = "Buscar producto por id",
-        description = "Devuelve un producto según su identificador."
-    )
+    @Operation(summary = "Buscar producto por id", description = "Devuelve un producto según su identificador.")
     @ApiResponses({
         @ApiResponse(
             responseCode = "200",
@@ -73,8 +62,7 @@ public class ProductoController {
         ),
         @ApiResponse(
             responseCode = "500",
-            description = "El producto no existe. Actualmente el backend responde 500 "
-                + "porque no hay un manejador global de errores; lo esperable es 404.",
+            description = "El producto no existe. Actualmente el backend responde 500 porque no hay un manejador global de errores; lo esperable es 404.",
             content = @Content
         )
     })
@@ -90,8 +78,7 @@ public class ProductoController {
 
     @Operation(
         summary = "Crear producto",
-        description = "Registra un producto nuevo. Requiere una categoría existente (categoriaId). "
-            + "Precio mayor que cero y stock mayor o igual a cero."
+        description = "Registra un producto nuevo. Requiere una categoría existente (categoriaId). Precio mayor que cero y stock mayor o igual a cero."
     )
     @ApiResponses({
         @ApiResponse(
@@ -102,16 +89,8 @@ public class ProductoController {
                 schema = @Schema(implementation = ProductoRespuestaDTO.class)
             )
         ),
-        @ApiResponse(
-            responseCode = "400",
-            description = "Datos inválidos (nombre vacío, precio <= 0, stock negativo, etc.)",
-            content = @Content
-        ),
-        @ApiResponse(
-            responseCode = "500",
-            description = "La categoría indicada no existe (esperable: 404)",
-            content = @Content
-        )
+        @ApiResponse(responseCode = "400", description = "Datos inválidos", content = @Content),
+        @ApiResponse(responseCode = "500", description = "La categoría indicada no existe (esperable: 404)", content = @Content)
     })
     @PostMapping
     public ResponseEntity<ProductoRespuestaDTO> crear(
@@ -136,16 +115,8 @@ public class ProductoController {
                 schema = @Schema(implementation = ProductoRespuestaDTO.class)
             )
         ),
-        @ApiResponse(
-            responseCode = "400",
-            description = "Datos inválidos",
-            content = @Content
-        ),
-        @ApiResponse(
-            responseCode = "500",
-            description = "El producto o la categoría no existe (esperable: 404)",
-            content = @Content
-        )
+        @ApiResponse(responseCode = "400", description = "Datos inválidos", content = @Content),
+        @ApiResponse(responseCode = "500", description = "El producto o la categoría no existe (esperable: 404)", content = @Content)
     })
     @PutMapping("/{id}")
     public ResponseEntity<ProductoRespuestaDTO> actualizar(
@@ -154,23 +125,17 @@ public class ProductoController {
         @Valid @RequestBody ProductoRequestDTO datos
     ) {
         Producto actualizado = productoService.actualizar(
-            id, convertirEntidad(datos)
+            id,
+            convertirEntidad(datos)
         );
 
         return ResponseEntity.ok(ProductoMapper.toDTO(actualizado));
     }
 
-    @Operation(
-        summary = "Eliminar producto",
-        description = "Elimina un producto por su id. No devuelve cuerpo."
-    )
+    @Operation(summary = "Eliminar producto", description = "Elimina un producto por su id. No devuelve cuerpo.")
     @ApiResponses({
         @ApiResponse(responseCode = "204", description = "Producto eliminado"),
-        @ApiResponse(
-            responseCode = "500",
-            description = "El producto no existe o no se puede eliminar",
-            content = @Content
-        )
+        @ApiResponse(responseCode = "500", description = "El producto no existe o no se puede eliminar")
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(
@@ -183,16 +148,15 @@ public class ProductoController {
 
     private Producto convertirEntidad(ProductoRequestDTO datos) {
         Producto producto = new Producto();
+
         producto.setNombre(datos.nombre());
         producto.setDescripcion(datos.descripcion());
         producto.setPrecio(datos.precio());
         producto.setStock(datos.stock());
         producto.setImagen(datos.imagen());
         producto.setDestacado(datos.destacado());
-
         producto.setCategoria(
-            categoriaRepository.findById(datos.categoriaId())
-                .orElseThrow(() -> new RuntimeException("Categoría no encontrada"))
+            productoService.buscarCategoriaPorId(datos.categoriaId())
         );
 
         return producto;

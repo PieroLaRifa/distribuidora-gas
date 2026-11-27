@@ -1,12 +1,10 @@
+
 package cl.elvolcan.backend.controller;
 
 import cl.elvolcan.backend.dto.OrdenCrearDTO;
 import cl.elvolcan.backend.dto.OrdenEstadoDTO;
 import cl.elvolcan.backend.dto.OrdenRespuestaDTO;
-import cl.elvolcan.backend.entity.*;
 import cl.elvolcan.backend.mapper.OrdenMapper;
-import cl.elvolcan.backend.repository.ProductoRepository;
-import cl.elvolcan.backend.repository.UsuarioRepository;
 import cl.elvolcan.backend.service.OrdenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -31,23 +29,12 @@ import java.util.List;
 public class OrdenController {
 
     private final OrdenService ordenService;
-    private final ProductoRepository productoRepository;
-    private final UsuarioRepository usuarioRepository;
 
-    public OrdenController(
-        OrdenService ordenService,
-        ProductoRepository productoRepository,
-        UsuarioRepository usuarioRepository
-    ) {
+    public OrdenController(OrdenService ordenService) {
         this.ordenService = ordenService;
-        this.productoRepository = productoRepository;
-        this.usuarioRepository = usuarioRepository;
     }
 
-    @Operation(
-        summary = "Listar órdenes",
-        description = "Devuelve todas las órdenes registradas."
-    )
+    @Operation(summary = "Listar órdenes", description = "Devuelve todas las órdenes registradas.")
     @ApiResponse(
         responseCode = "200",
         description = "Lista de órdenes (puede venir vacía)",
@@ -65,10 +52,7 @@ public class OrdenController {
         );
     }
 
-    @Operation(
-        summary = "Buscar orden por id",
-        description = "Devuelve una orden según su identificador interno."
-    )
+    @Operation(summary = "Buscar orden por id", description = "Devuelve una orden según su identificador interno.")
     @ApiResponses({
         @ApiResponse(
             responseCode = "200",
@@ -80,8 +64,7 @@ public class OrdenController {
         ),
         @ApiResponse(
             responseCode = "500",
-            description = "La orden no existe. Actualmente el backend responde 500 "
-                + "porque no hay un manejador global de errores; lo esperable es 404.",
+            description = "La orden no existe. Actualmente el backend responde 500 porque no hay un manejador global de errores; lo esperable es 404.",
             content = @Content
         )
     })
@@ -97,8 +80,7 @@ public class OrdenController {
 
     @Operation(
         summary = "Buscar orden por número de orden",
-        description = "Devuelve una orden según el número de orden que se le entregó al cliente "
-            + "(campo numeroOrden de la respuesta)."
+        description = "Devuelve una orden según el número de orden que se le entregó al cliente (campo numeroOrden de la respuesta)."
     )
     @ApiResponses({
         @ApiResponse(
@@ -127,9 +109,7 @@ public class OrdenController {
 
     @Operation(
         summary = "Crear orden",
-        description = "Registra una orden nueva con los datos del cliente, la dirección de entrega y "
-            + "uno o más productos con su cantidad. userId es opcional (compra sin cuenta). "
-            + "Los productos y el usuario indicados deben existir."
+        description = "Registra una orden nueva con los datos del cliente, la dirección de entrega y uno o más productos con su cantidad. userId es opcional (compra sin cuenta). Los productos y el usuario indicados deben existir."
     )
     @ApiResponses({
         @ApiResponse(
@@ -142,8 +122,7 @@ public class OrdenController {
         ),
         @ApiResponse(
             responseCode = "400",
-            description = "Datos inválidos (cliente o dirección incompletos, lista de productos vacía, "
-                + "cantidad menor o igual a cero, etc.)",
+            description = "Datos inválidos",
             content = @Content
         ),
         @ApiResponse(
@@ -156,63 +135,18 @@ public class OrdenController {
     public ResponseEntity<OrdenRespuestaDTO> crear(
         @Valid @RequestBody OrdenCrearDTO datos
     ) {
-        Orden orden = new Orden();
-
-        if (datos.userId() != null) {
-            Usuario usuario = usuarioRepository.findById(datos.userId())
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-            orden.setUsuario(usuario);
-        }
-
-        orden.setClienteNombre(datos.cliente().nombre());
-        orden.setClienteEmail(datos.cliente().email());
-        orden.setClienteTelefono(datos.cliente().telefono());
-        orden.setDireccionCalle(datos.direccion().calle());
-        orden.setDireccionDepto(datos.direccion().depto());
-        orden.setDireccionComuna(datos.direccion().comuna());
-        orden.setDireccionIndicaciones(datos.direccion().indicaciones());
-
-        for (OrdenCrearDTO.ItemDTO itemDTO : datos.items()) {
-            Producto producto = productoRepository.findById(itemDTO.productId())
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
-
-            DetalleOrden detalle = new DetalleOrden();
-            detalle.setProducto(producto);
-            detalle.setCantidad(itemDTO.cantidad());
-            detalle.setOrden(orden);
-            orden.getItems().add(detalle);
-        }
-
-        Orden creada = ordenService.crear(orden);
-
         return ResponseEntity.status(HttpStatus.CREATED)
-            .body(OrdenMapper.toDTO(creada));
+            .body(OrdenMapper.toDTO(ordenService.crear(datos)));
     }
 
     @Operation(
         summary = "Actualizar estado de una orden",
-        description = "Cambia solo el estado de la orden (PATCH: actualización parcial). "
-            + "Pensado para el rol ADMIN (la restricción se aplicará cuando se integre JWT)."
+        description = "Cambia solo el estado de la orden mediante PATCH. Requiere rol ADMIN."
     )
     @ApiResponses({
-        @ApiResponse(
-            responseCode = "200",
-            description = "Estado actualizado",
-            content = @Content(
-                mediaType = "application/json",
-                schema = @Schema(implementation = OrdenRespuestaDTO.class)
-            )
-        ),
-        @ApiResponse(
-            responseCode = "400",
-            description = "El estado viene vacío",
-            content = @Content
-        ),
-        @ApiResponse(
-            responseCode = "500",
-            description = "La orden no existe (esperable: 404)",
-            content = @Content
-        )
+        @ApiResponse(responseCode = "200", description = "Estado actualizado"),
+        @ApiResponse(responseCode = "400", description = "El estado viene vacío"),
+        @ApiResponse(responseCode = "500", description = "La orden no existe (esperable: 404)")
     })
     @PatchMapping("/{id}/estado")
     public ResponseEntity<OrdenRespuestaDTO> actualizarEstado(
@@ -227,17 +161,10 @@ public class OrdenController {
         );
     }
 
-    @Operation(
-        summary = "Eliminar orden",
-        description = "Elimina una orden por su id. No devuelve cuerpo."
-    )
+    @Operation(summary = "Eliminar orden", description = "Elimina una orden por su id. No devuelve cuerpo.")
     @ApiResponses({
         @ApiResponse(responseCode = "204", description = "Orden eliminada"),
-        @ApiResponse(
-            responseCode = "500",
-            description = "La orden no existe o no se puede eliminar",
-            content = @Content
-        )
+        @ApiResponse(responseCode = "500", description = "La orden no existe o no se puede eliminar")
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(
